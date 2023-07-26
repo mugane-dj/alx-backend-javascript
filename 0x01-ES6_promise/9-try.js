@@ -8,7 +8,8 @@ export default function guardrail(MathFunction) {
     queue.push(msg);
     return queue;
   } catch (error) {
-    queue.push(error);
+    const errorMsg = `Error: ${error.message}`;
+    queue.push(errorMsg);
     queue.push(msg);
     return queue;
   }
