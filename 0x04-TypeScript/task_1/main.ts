@@ -1,18 +1,8 @@
 interface Teacher {
-    readonly firstName: string;
+    readonly firstName: string; // Only modified when the object is instantiated
     readonly lastName: string;
-    fullTimeEmployee: boolean;
-    yearsOfExperience?: number;
+    fullTimeEmployee: boolean; // Always defined
+    yearsOfExperience?: number; // Optional attribute
     location: string;
-    [propName: string]: boolean | number | string;
+    [propName: string]: boolean | number | string; // Index signature to allow extra attributes
 }
-
-const teacher3: Teacher = {
-    firstName: 'John',
-    fullTimeEmployee: false,
-    lastName: 'Doe',
-    location: 'London',
-    contract: false,
-  };
-  
-  console.log(teacher3);
