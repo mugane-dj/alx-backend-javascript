@@ -1,5 +1,3 @@
-const { JSDOM  }= require('jsdom');
-
 interface Student {
     firstName: string;
     lastName: string;
@@ -24,11 +22,7 @@ const studentsList: Array<Student> = [
 ];
 
 function renderTable() {
-    const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-    const document = dom.window.document;
-
-    const table = document.createElement("table");
-    const tableBody = document.createElement("tbody");
+    const tableBody = document.querySelector("#studentTable tbody");
 
     for (const student of studentsList) {
         const row = document.createElement("tr");
@@ -42,10 +36,6 @@ function renderTable() {
         row.appendChild(location);
         tableBody.appendChild(row);
     }
-    table.appendChild(tableBody);
-    document.body.appendChild(table);
-
-    console.log(document.body.innerHTML);
 }
 
 renderTable();
