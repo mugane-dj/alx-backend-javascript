@@ -53,7 +53,7 @@ function executeWork (employee: Director | Teacher) {
     }
 }
 
-type Subjects =  'Math' | 'History';
+type Subjects = 'Math' | 'History';
 
 function teachClass (todayClass: Subjects): string {
     if (todayClass === 'Math') {
