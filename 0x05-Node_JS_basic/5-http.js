@@ -3,7 +3,6 @@ const http = require('http');
 const fs = require('fs');
 
 const PORT = 1245;
-const HOST = 'localhost';
 
 const countStudents = (path) => new Promise((resolve, reject) => {
   fs.readFile(path, 'utf-8', (err, data) => {
@@ -58,6 +57,8 @@ const app = http.createServer((req, res) => {
       })
       .catch((error) => {
         console.error(error);
+        res.statusCode = 500;
+        res.end();
       });
   }
 }).listen(PORT);
