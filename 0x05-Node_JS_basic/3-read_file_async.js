@@ -1,3 +1,4 @@
+// Read the database file asynchronously and return a promise
 const fs = require('fs');
 const { promisify } = require('util');
 
