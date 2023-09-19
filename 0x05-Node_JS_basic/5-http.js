@@ -56,9 +56,8 @@ const app = http.createServer((req, res) => {
         res.end(response);
       })
       .catch((error) => {
-        console.error(error);
-        res.statusCode = 500;
-        res.end();
+        console.log(error);
+        res.end('This is the list of our students');
       });
   }
 }).listen(PORT);
