@@ -2,18 +2,16 @@
 // Create a small HTTP server using the http module
 const http = require('http');
 const fs = require('fs');
+const { promisify } = require('util');
 
-const app = http.createServer((req, res) => {
-  if (req.url === '/') {
-    res.write('Hello Holberton School!');
-    res.end();
-  } else if (req.url === '/students') {
-    const path = process.argv[2];
-    fs.readFile(path, 'utf-8', (err, data) => {
-      if (err) throw new Error('Cannot load the database');
+const readFileAsync = promisify(fs.readFile);
+
+function countStudents(path) {
+  return readFileAsync(path, 'utf-8')
+    .then((data) => {
+      let response = '';
       const studentList = data.split('\n');
-      res.write('This is the list of our students\n');
-      res.write(`Number of students: ${studentList.length - 1}\n`);
+      response += `Number of students: ${studentList.length - 1}\n`;
       const studentDict = {};
       for (let i = 1; i < studentList.length; i += 1) {
         const values = studentList[i].split(',');
@@ -32,7 +30,7 @@ const app = http.createServer((req, res) => {
           studentDict[field].count += 1;
         }
       }
-      let response = '';
+
       const keys = Object.keys(studentDict);
       for (let i = 0; i < keys.length; i += 1) {
         const key = keys[i];
@@ -42,8 +40,27 @@ const app = http.createServer((req, res) => {
           response += '\n';
         }
       }
-      res.end(response);
+      return response;
+    })
+    .catch(() => {
+      throw new Error('Cannot load the database');
     });
+}
+
+const app = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.write('Hello Holberton School!');
+    res.end();
+  } else if (req.url === '/students') {
+    const path = process.argv[2];
+    countStudents(path)
+      .then((response) => {
+        res.write('This is the list of our students\n');
+        res.end(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }).listen(1245);
 
