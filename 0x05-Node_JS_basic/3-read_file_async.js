@@ -30,7 +30,7 @@ function countStudents(path) {
 
       for (const key of Object.keys(studentDict)) {
         const studentsList = studentDict[key].students.join(', ');
-        console.log(`Number of students in ${key}: ${studentDict[key].count}. List: ${studentsList}`);
+        process.stdout.write(`Number of students in ${key}: ${studentDict[key].count}. List: ${studentsList}\n`);
       }
     })
     .catch(() => {
