@@ -57,9 +57,9 @@ const app = http.createServer((req, res) => {
       .catch((error) => {
         console.log(error);
         res.end();
-      })
+      });
   }
-})
+});
 
 const PORT = 1245;
 
