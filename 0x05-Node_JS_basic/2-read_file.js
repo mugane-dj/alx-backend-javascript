@@ -1,3 +1,4 @@
+// Read the database file synchronously
 const fs = require('fs');
 
 function countStudents(path) {
