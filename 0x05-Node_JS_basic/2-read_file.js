@@ -32,5 +32,5 @@ const countStudents = (path) => {
   } catch (err) {
     throw new Error('Cannot load the database');
   }
-}
+};
 module.exports = countStudents;
