@@ -52,12 +52,14 @@ const app = http.createServer((req, res) => {
     const path = process.argv[2];
     countStudents(path)
       .then((response) => {
-        res.write('This is the list of our students\n');
-        res.end(response);
+        res.writeHead(200);
+        res.write(`This is the list of our students\n${response}`);
+        res.end();
       })
       .catch((error) => {
-        console.log(error);
-        res.end('This is the list of our students');
+        res.writeHead(500);
+        res.write(`This is the list of our students\n${error.message}`);
+        res.end();
       });
   }
 }).listen(PORT);
