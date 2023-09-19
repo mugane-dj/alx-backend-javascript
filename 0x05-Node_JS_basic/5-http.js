@@ -54,11 +54,10 @@ const app = http.createServer((req, res) => {
     countStudents(path)
       .then((response) => {
         res.write('This is the list of our students\n');
-        res.write(response);
-        res.end();
+        res.end(response);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         res.end();
       });
   }
