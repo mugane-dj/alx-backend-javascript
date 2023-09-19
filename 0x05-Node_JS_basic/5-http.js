@@ -2,6 +2,9 @@
 const http = require('http');
 const fs = require('fs');
 
+const PORT = 1245;
+const HOST = 'localhost';
+
 const countStudents = (path) => new Promise((resolve, reject) => {
   fs.readFile(path, 'utf-8', (err, data) => {
     if (err) reject(new Error('Cannot load the database'));
@@ -61,10 +64,8 @@ const app = http.createServer((req, res) => {
   }
 });
 
-const PORT = 1245;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on Port: ${PORT}`);
+app.listen(HOST, PORT, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
 
 module.exports = app;
