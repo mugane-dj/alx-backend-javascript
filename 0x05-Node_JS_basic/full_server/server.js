@@ -1,6 +1,6 @@
 // Express server
-import express from "express";
-import routes from "./routes.js";
+import express from 'express';
+import routes from './routes';
 
 const app = express();
 const PORT = 1245;
