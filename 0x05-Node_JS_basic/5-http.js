@@ -1,13 +1,11 @@
 // Create a small HTTP server using the http module
 const http = require('http');
 const fs = require('fs');
-const { promisify } = require('util');
 
-const readFileAsync = promisify(fs.readFile);
-
-function countStudents(path) {
-  return readFileAsync(path, 'utf-8')
-    .then((data) => {
+const countStudents = (path) => new Promise((resolve, reject) => {
+  fs.readFile(path, 'utf-8', (err, data) => {
+    if (err) reject(new Error('Cannot load the database'));
+    if (data) {
       let response = '';
       const studentList = data.split('\n');
       response += `Number of students: ${studentList.length - 1}\n`;
@@ -39,12 +37,10 @@ function countStudents(path) {
           response += '\n';
         }
       }
-      return response;
-    })
-    .catch(() => {
-      throw new Error('Cannot load the database');
-    });
-}
+      resolve(response);
+    }
+  });
+});
 
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
