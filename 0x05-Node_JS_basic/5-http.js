@@ -51,12 +51,20 @@ const app = http.createServer((req, res) => {
     countStudents(path)
       .then((response) => {
         res.write('This is the list of our students\n');
-        res.end(response);
+        res.write(response);
+        res.end();
       })
       .catch((error) => {
-        console.error(error);
-      });
+        console.log(error);
+        res.end();
+      })
   }
-}).listen(1245);
+})
+
+const PORT = 1245;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on Port: ${PORT}`);
+});
 
 module.exports = app;
