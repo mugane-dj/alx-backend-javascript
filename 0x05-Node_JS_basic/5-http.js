@@ -1,5 +1,4 @@
 // Create a small HTTP server using the http module
-// Create a small HTTP server using the http module
 const http = require('http');
 const fs = require('fs');
 const { promisify } = require('util');
