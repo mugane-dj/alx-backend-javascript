@@ -1,12 +1,10 @@
 // Read the database file asynchronously and return a promise
 const fs = require('fs');
-const { promisify } = require('util');
 
-const readFileAsync = promisify(fs.readFile);
-
-function countStudents(path) {
-  return readFileAsync(path, 'utf-8')
-    .then((data) => {
+const countStudents = (path) => new Promise((resolve, reject) => {
+  fs.readFile(path, 'utf-8', (err, data) => {
+    if (err) reject(new Error('Cannot load the database'));
+    if (data) {
       const studentList = data.split('\n');
       console.log(`Number of students: ${studentList.length - 1}`);
       const studentDict = {};
@@ -32,10 +30,9 @@ function countStudents(path) {
         const studentsList = studentDict[key].students.join(', ');
         console.log(`Number of students in ${key}: ${studentDict[key].count}. List: ${studentsList}`);
       }
-    })
-    .catch(() => {
-      throw new Error('Cannot load the database');
-    });
-}
+      resolve(true);
+    }
+  });
+});
 
 module.exports = countStudents;
