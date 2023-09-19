@@ -60,10 +60,6 @@ const app = http.createServer((req, res) => {
         console.error(error);
       });
   }
-});
-
-app.listen(HOST, PORT, () => {
-  console.log(`Server is running on http://${HOST}:${PORT}`);
-});
+}).listen(PORT);
 
 module.exports = app;
