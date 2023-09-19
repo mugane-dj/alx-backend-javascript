@@ -1,3 +1,4 @@
+// Write string arg passed to STDOUT
 function displayMessage(message) {
   console.log(message);
 }
