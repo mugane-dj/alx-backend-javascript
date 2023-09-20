@@ -24,11 +24,17 @@ const countStudents = (path) => {
         studentDict[field].count += 1;
       }
     }
-
-    for (const key of Object.keys(studentDict)) {
+    let output = '';
+    const keys = Object.keys(studentDict);
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
       const studentsList = studentDict[key].students.join(', ');
-      console.log(`Number of students in ${key}: ${studentDict[key].count}. List: ${studentsList}`);
+      output += `Number of students in ${key}: ${studentDict[key].count}. List: ${studentsList}`;
+      if (i < keys.length - 1) {
+        output += '\n';
+      }
     }
+    console.log(output);
   } catch (err) {
     throw new Error('Cannot load the database');
   }
