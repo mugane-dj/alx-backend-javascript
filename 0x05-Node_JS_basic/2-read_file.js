@@ -26,8 +26,7 @@ const countStudents = (path) => {
     }
 
     for (const key of Object.keys(studentDict)) {
-      const { students } = studentDict[key];
-      const studentsList = students.slice(0, -1).join(', ') + (students.length > 1 ? ', ' : '') + students.slice(-1);
+      const studentsList = studentDict[key].students.join(', ');
       console.log(`Number of students in ${key}: ${studentDict[key].count}. List: ${studentsList}`);
     }
   } catch (err) {
