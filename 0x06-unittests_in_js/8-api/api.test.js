@@ -1,5 +1,4 @@
 // Test suite for express server
-const app = require('./api.js')
 const chai = require('chai')
 const request = require('request')
 
