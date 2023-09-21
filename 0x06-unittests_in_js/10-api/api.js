@@ -13,7 +13,7 @@ app.get('/cart/:id(\\d+)', (req, res) => {
 });
 
 app.get('/available_payments', (req, res) => {
-  res.send(
+  res.json(
     {
         payment_methods: {
           credit_cards: true,
