@@ -31,16 +31,16 @@ describe('Index page', () => {
 
   it('should return correct response when called', done => {
     request.post(`${baseUrl}/login`, {json: {userName: 'Betty'}}, (err, res, body) => {
-        expect(res.statusCode).to.be.equal(200);
-        expect(body).to.be.equal('Welcome Betty');
-        done();
-      });
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome Betty');
+      done();
+    });
   });
 
   it('should return correct obj response when called', done => {
     request.get(`${baseUrl}/available_payments`, (err, res, body) => {
       expect(res.statusCode).to.be.equal(200);
-      expect(JSON.parse(body)).to.be.deep.equal({ payment_methods: {credit_cards: true, paypal: false } });
+      expect(JSON.parse(body)).to.be.deep.equal({payment_methods: {credit_cards: true, paypal: false}});
       done();
     });
   });
