@@ -22,7 +22,7 @@ describe('Index page', () => {
   });
 
   it('should return correct status code when id is not a number', done => {
-    request.get(`${baseUrl}/cart/82`, (err, res, body) => {
+    request.get(`${baseUrl}/cart/hello`, (err, res, body) => {
       expect(res.statusCode).to.be.equal(404);
     });
   });
