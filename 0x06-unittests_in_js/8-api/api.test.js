@@ -1,19 +1,16 @@
 // Test suite for express server
-const app = require('./api.js')
-const chai = require('chai')
-const chaiHttp = require('chai-http')
-chai.use(chaiHttp)
-const expect = chai.expect
+const request = require('request')
+const chai = require('chai');
+const expect = chai.expect;
 
 describe('Index page', () => {
-  it('should return "Welcome to the payment system" when called', done => {
-    chai
-      .request(app)
-      .get('/')
-      .end((err, res) => {
-        expect(res.status).to.be.equal(200)
-        expect(res.text).to.be.equal('Welcome to the payment system')
-        done()
-      })
+  const baseUrl = 'http://localhost:7865';
+
+  it('should return correct response when called', done => {
+    request.get(`${baseUrl}/`, (err, res, body) => {
+        expect(res.statusCode).to.be.equal(200);
+        expect(body).to.be.equal('Welcome to the payment system');
+        done();
+    })
   })
 })
