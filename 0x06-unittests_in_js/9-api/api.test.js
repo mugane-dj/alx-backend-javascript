@@ -18,12 +18,14 @@ describe('Index page', () => {
     request.get(`${baseUrl}/cart/82`, (err, res, body) => {
       expect(res.statusCode).to.be.equal(200);
       expect(body).to.be.equal('Payment methods for cart 82');
+      done();
     });
   });
 
   it('should return correct status code when id is not a number', done => {
     request.get(`${baseUrl}/cart/hello`, (err, res, body) => {
       expect(res.statusCode).to.be.equal(404);
+      done();
     });
   });
 });
