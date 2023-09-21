@@ -30,7 +30,7 @@ describe('Index page', () => {
   });
 
   it('should return correct response when called', done => {
-    request.post(`${baseUrl}/login {json: {userName: 'Betty'}}`, (err, res, body) => {
+    request.post(`${baseUrl}/login`, {json: {userName: 'Betty'}}, (err, res, body) => {
         expect(res.statusCode).to.be.equal(200);
         expect(body).to.be.equal('Welcome Betty');
         done();
