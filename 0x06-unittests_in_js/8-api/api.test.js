@@ -6,7 +6,7 @@ const request = require('request')
 const expect = chai.expect
 const PORT = 7865
 
-const baseUrl = `http://localhost:${PORT}`
+const baseUrl = `http://localhost:${PORT}/`
 
 describe('app', () => {
   it('should return "Welcome to the payment system" when GET /', (done) => {
