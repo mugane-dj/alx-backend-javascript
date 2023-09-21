@@ -9,13 +9,13 @@ const expect = chai.expect
 
 describe('sendPaymentRequestToApi', () => {
   it('correctly returns shipping total', () => {
-    const calculateNumber = sinon.stub(Utils, 'calculateNumber').returns(10)
+    const dummyStub = sinon.stub(Utils, 'calculateNumber').returns(10)
     const consoleSpy = sinon.spy(console, 'log')
 
     sendPaymentRequestToApi(100, 20)
-    expect(calculateNumber.calledOnceWithExactly('SUM', 100, 20)).to.be.true
+    expect(dummyStub.calledOnceWithExactly('SUM', 100, 20)).to.be.true
     expect(consoleSpy.calledOnceWithExactly('The total is: 10')).to.be.true
+    dummyStub.restore()
     consoleSpy.restore()
-    calculateNumber.restore()
   })
 })
