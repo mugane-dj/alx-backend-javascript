@@ -13,14 +13,9 @@ app.get('/cart/:id(\\d+)', (req, res) => {
 });
 
 app.get('/available_payments', (req, res) => {
-  res.json(
-    {
-        payment_methods: {
-          credit_cards: true,
-          paypal: false
-        }
-      }
-  );
+  const data = { payment_methods: {credit_cards: true, paypal: false } }
+  res.json(data);
+  console.log(data);
 });
 
 app.post('/login', (req, res) => {
